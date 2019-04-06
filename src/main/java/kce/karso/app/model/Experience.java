@@ -37,7 +37,4 @@ public class Experience {
 	@Column(name="reason_for_leaving")
 	private String reasonForLeaving;
 	
-	@Column(name="role")
-	private String role;
-	
 }

@@ -214,20 +214,22 @@ public class CandidateController {
 				return "candidate/epQualification";
 			}
 			else {
-			CandidateDetails candidateDetails = candidateService.getCandidateDetails(candidateId);
 			List<Experience> experiences = candidateService.getExperiences(candidateId);
-			int teachingExp = candidateService.getCountExp(candidateId,"teaching");
-			int industryExp = candidateService.getCountExp(candidateId,"industry");
-			int researchExp = candidateService.getCountExp(candidateId,"research");
-			Experience experience = new Experience();
-			theModel.addAttribute("teachingExp",teachingExp);
-			theModel.addAttribute("industryExp",industryExp);
-			theModel.addAttribute("researchExp",researchExp);
-			theModel.addAttribute("detail",candidateDetails);
-			theModel.addAttribute("experience",experience);
 			theModel.addAttribute("experiences",experiences);
 			return "candidate/experience";
 			}
+		}
+	}
+	
+	@PostMapping("/addExperience")
+	public String addExperience(Model theModel) {
+		if(session.getAttribute("candidateId")==null) {
+			return "redirect:/";
+		}
+		else {
+			Experience experience = new Experience();
+			theModel.addAttribute("experience",experience);
+			return "candidate/addExperience";
 		}
 	}
 	
@@ -281,21 +283,6 @@ public class CandidateController {
 			int candidateId = Integer.parseInt(session.getAttribute("candidateId").toString());
 			CandidateDetails candidateDetails = candidateService.getCandidateDetails(candidateId);
 			List<Experience> experiences = candidateService.getExperiences(candidateId);
-			int teachingExp = candidateService.getCountExp(candidateId,"teaching");
-			int industryExp = candidateService.getCountExp(candidateId,"industry");
-			int researchExp = candidateService.getCountExp(candidateId,"research");
-			if((experiences.size())!=(candidateDetails.getTeachingExperience()+candidateDetails.getIndustryExperience()+candidateDetails.getResearchExperience())) {
-				request.setAttribute("error","Please Fill Every Experiences");
-				Experience experience = new Experience();
-				theModel.addAttribute("teachingExp",teachingExp);
-				theModel.addAttribute("industryExp",industryExp);
-				theModel.addAttribute("researchExp",researchExp);
-				theModel.addAttribute("detail",candidateDetails);
-				theModel.addAttribute("experience",experience);
-				theModel.addAttribute("experiences",experiences);
-				return "candidate/experience";
-			}
-			else {
 				if(candidateDetails.getTeachingExperience()>0) {
 					List<SubjectsTaught> subjectsTaught = candidateService.getSubjectTaught(candidateId);
 					theModel.addAttribute("subjectsTaught",subjectsTaught);
@@ -306,7 +293,6 @@ public class CandidateController {
 				}
 			}
 		}
-	}
 	
 	@RequestMapping("/addSubjectTaught")
 	public String addSubjectTaught(Model theModel) {
@@ -411,6 +397,18 @@ public class CandidateController {
 		}
 	}
 	
+	@PostMapping("/addResearchExperience")
+	public String addResearchExperience(Model theModel) {
+		if(session.getAttribute("candidateId")==null) {
+			return "redirect:/";
+		}
+		else {
+		ResearchExperience researchExperience = new ResearchExperience();
+		theModel.addAttribute("researchExperience",researchExperience);
+		return "candidate/addResearchExperience";
+		}
+	}
+	
 	@PostMapping("/processAddResearchExperience")
 	public String processAddResearchExperience(@ModelAttribute("researchExperience")ResearchExperience researchExperience) {
 	if(session.getAttribute("candidateId")==null) {
@@ -432,7 +430,7 @@ public class CandidateController {
 		else {
 		ResearchExperience researchExperience = candidateService.getResearchExperience(id);
 		theModel.addAttribute("researchExperience",researchExperience);
-		return "candidate/editResearchExperience";
+		return "candidate/addResearchExperience";
 		}
 	}
 	

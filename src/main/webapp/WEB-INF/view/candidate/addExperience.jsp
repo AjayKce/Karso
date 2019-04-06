@@ -14,7 +14,6 @@
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 				<form:form method="post" action="processAddExperience" modelAttribute="experience">
 					<form:hidden path="id" />
-					<form:hidden path="role" />
 					<h2 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Experience</h2>
 					<div class="row" style="background-color:#ffeaa7;box-shadow:3px 4px 5px #b2bec3,-3px 4px 5px #b2bec3;" >
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br></div>
