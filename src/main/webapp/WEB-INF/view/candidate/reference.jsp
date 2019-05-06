@@ -29,7 +29,7 @@ List<Reference> references = (List<Reference>)request.getAttribute("references")
 	<div class="container">
 	<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<h4>References (minimum three References and atleast one should be familiar with your recent work) </h4>
+				<h4>References (three References mandatory and atleast one should be familiar with your recent work) </h4>
 				<table class="table table-responsive table-bordered">
 					<thead>
 						<th>Name</th>
@@ -43,10 +43,7 @@ List<Reference> references = (List<Reference>)request.getAttribute("references")
 						<th>Mobile Number</th>
 						<th>Email</th>
 						<th colspan="2">
-							<form action="addReference" method="post" style="padding:0px;margin:0px;border:0px;">
-								<input type="hidden" name="candidateId" value="<%=candidateId %>">
-								<button type="submit" class="btn btn-primary">Add</button>
-							</form>
+							Action
 						</th>
 						<%for(Reference temp:references){ %>
 						<tr>

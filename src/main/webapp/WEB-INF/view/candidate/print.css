@@ -1,0 +1,50 @@
+@page {
+    margin-top: 2cm;
+    margin-bottom: 0px;
+    margin-left: 2cm;
+    margin-right: 2cm;
+}
+
+
+div{
+    page-break-inside: avoid;
+}
+
+.container-fluid{
+    padding:0px 30px;
+}
+
+@font-face {
+    font-family: "grand";
+    src: url("../../fonts/SciFly-Sans.ttf");
+}
+body {
+    position: absolute;
+    margin: 50px;
+    width: 93%;
+    border: 1px solid black;
+
+}
+
+.photo {
+    border: 1px solid black;
+    width: 180px;
+    margin: 10px;
+}
+
+td {
+    font-weight: bold;
+}
+
+.gray {
+    border: 0.5px solid black;
+    height: 30px;
+    background-color: #faf6f6;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.highlight {
+    page-break-inside: avoid;
+    background-color: #ebebeb;
+}
